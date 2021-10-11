@@ -1,35 +1,28 @@
-# Name Mangler
+class Name
 
-@name = "Johanna Jackson"
+  attr_accessor :name
 
-# Mangle the name by reversing it or borgifying it
-def modified_name(choose)
-  # Split the name into first and last in an array
-  split_name = @name.split
-  #reversed_twice = split_name.reverse.reverse
-  #mangled_name = reversed_twice << "Mangled"
-  #return mangled_name * 2
-  # Reverse the array of name components so the array is [last, first]
-  reversed_name_components = split_name.reverse
-  # Rejoin the array of name components
-  new_name1 = reversed_name_components.join(' ')
-  # Store the mangled name
-  @name = new_name1
-  puts new_name1
-  if choose
-    # Split the name into last and first in an array
-    split_name2 = new_name1.split
-    # Reverse the array of name components so the array is [last, first]
-    reversed_name_components2 = split_name2.reverse
-    # Add borg to the end of the array
-    reversed_name_components2 << "Borg"
-    # Rejoin the array of name components
-    new_name2 = reversed_name_components2.join(' ')
-    puts new_name2
-    @name = new_name2
+  def initialize(name)
+    @name = name
   end
-  return @name
+
+  def reverse_word_order()
+    name_as_list_of_words = @name.split
+    name_as_list_of_words.reverse!
+    @name = name_as_list_of_words.join(' ')
+  end
+
+  def add_word(word)
+    @name = name + " " + word
+  end
+
+  def to_s
+    name
+  end
 end
 
-puts "New name: #{modified_name(false)}"
-puts "New borg name: #{modified_name(true)}"
+jackson = Name.new("Johanna Jackson")
+
+puts "New name: #{jackson.reverse_word_order}"
+jackson.reverse_word_order
+puts "New borg name: #{jackson.add_word("Borg")}"
